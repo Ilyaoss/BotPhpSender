@@ -17,11 +17,19 @@ myLog("request: ".json_encode($request,JSON_UNESCAPED_UNICODE));
 
 $server = $request["server"];
 $key = $request["key"];
-$ts = $request["ts "];
+$ts = $request["ts"];
 
-$req = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=25");
-myLog("req: ".$req);
-
+while (true) {
+    $response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=25");
+	myLog("response: ".$response);
+    $updates = $response['updates'];
+    if ($updates){  # проверка, были ли обновления
+        foreach( $updates as $element){  # проход по всем обновлениям в ответе
+            myLog("element: ".$element);
+		}
+	}
+    $ts = $response['ts']  # обновление номера последнего обновления
+}
 // отправление запроса на Long Poll сервер со временем ожидания 90 секунд
 /*--Парсим xls с категориями--*/
 //$def_mas = read_XLS(__DIR__ . '/categories.xlsx') ;
