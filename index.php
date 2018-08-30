@@ -20,7 +20,7 @@ $key = $request["key"];
 $ts = $request["ts"];
 
 while (true) {
-    $response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=30");
+    $response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=10");
 	myLog("response: ".$response);
     $updates = $response['updates'];
     if ($updates){  # проверка, были ли обновления
