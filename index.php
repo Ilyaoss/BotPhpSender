@@ -10,8 +10,7 @@ const VK_TOKEN = '887f275780153f8d0a42339e542ecb1f1b6a47bce9385aea12ada07d3a4590
 
 $group_id = 169930012;
 myLog("open?");
-$v = '5.80';
-$vk = new VKApiClient($v , VKLanguage::RUSSIAN);
+$vk = new VKApiClient();
 $request = $vk->groups()->getLongPollServer(VK_TOKEN ,['group_id'=>$group_id]);
 myLog("request_default: ".$request);
 myLog("request_jsonenc: ".json_encode($request,JSON_UNESCAPED_UNICODE));
