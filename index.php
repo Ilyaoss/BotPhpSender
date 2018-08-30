@@ -6,13 +6,13 @@ use VK\Client\Enums\VKLanguage;
 use VK\Client\VKApiClient;
 
 const MAX_LENGHT = 40;
-$VK_TOKEN = '887f275780153f8d0a42339e542ecb1f1b6a47bce9385aea12ada07d3a459095800074da66b418d5911c9';
+VK_TOKEN = '887f275780153f8d0a42339e542ecb1f1b6a47bce9385aea12ada07d3a459095800074da66b418d5911c9';
 
 $group_id = 169930012;
 myLog("open?");
-
-$vk = new VKApiClient('5.80', VKLanguage::RUSSIAN);
-$request = $vk->groups()->getLongPollServer($VK_TOKEN ,['group_id'=>$group_id]);
+$v = '5.80';
+$vk = new VKApiClient($v , VKLanguage::RUSSIAN);
+$request = $vk->groups()->getLongPollServer(VK_TOKEN ,['group_id'=>$group_id]);
 myLog("request_default: ".$request);
 myLog("request_jsonenc: ".json_encode($request,JSON_UNESCAPED_UNICODE));
 $server = $request["server"];
