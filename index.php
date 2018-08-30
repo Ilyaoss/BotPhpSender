@@ -12,7 +12,7 @@ $group_id = 169930012;
 myLog("open?");
 
 $vk = new VKApiClient('5.80', VKLanguage::RUSSIAN);
-$link = connect_db();
+
 /*$request = $vk->groups()->getLongPollServer(VK_TOKEN ,['group_id'=>$group_id]);
 myLog("request: ".json_encode($request,JSON_UNESCAPED_UNICODE));
 
@@ -94,6 +94,7 @@ $keys = [];
     $ts = $response["ts"];  # обновление номера последнего обновления
 }*/
 while (true) {
+	$link = connect_db();
 	$path = __DIR__ . '/test.xlsx';
 					
 	$cat_array_old = read_XLS($path);
@@ -113,6 +114,7 @@ while (true) {
 		send_subs($vk,$user,$subs,$keys,$cat_array_old);							
 	}
 	$msg = null;
+	mysqli_close($link);
 	sleep(60);
 }
 // отправление запроса на Long Poll сервер со временем ожидания 90 секунд
