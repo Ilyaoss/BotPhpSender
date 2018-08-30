@@ -106,7 +106,7 @@ while (true) {
 	}
 	$keys = array_keys($array_old);
 	$date = date("Y-m-d H:i:s");
-	$where = "('$date'-date_start)<90";//TO_SECONDS?
+	$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<90";//TO_SECONDS?
 	$db = read_db($link,$where);
 	foreach($data as $user=>$subs)
 	{
