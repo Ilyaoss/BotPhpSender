@@ -20,7 +20,7 @@ $key = $request["key"];
 $ts = $request["ts"];
 
 while (true) {
-    $response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=25");
+    $response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=30");
 	myLog("response: ".$response);
     $updates = $response['updates'];
     if ($updates){  # проверка, были ли обновления
@@ -28,7 +28,7 @@ while (true) {
             myLog("element: ".$element);
 		}
 	}
-    $ts = $response['ts'];  # обновление номера последнего обновления
+    $ts = $response["ts"];  # обновление номера последнего обновления
 }
 // отправление запроса на Long Poll сервер со временем ожидания 90 секунд
 /*--Парсим xls с категориями--*/
