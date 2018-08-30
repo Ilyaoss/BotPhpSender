@@ -105,7 +105,8 @@ while (true) {
 		$array_old[$value[6]][$value[0]] = $value[5]; //в категории создаём массивы асоц номер-статус
 	}
 	$keys = array_keys($array_old);
-	$where = "(sysdate-date_start)<60";//TO_SECONDS?
+	$date = date("Y-m-d H:i:s");
+	$where = "('$date'-date_start)<90";//TO_SECONDS?
 	$db = read_db($link,$where);
 	foreach($data as $user=>$subs)
 	{
