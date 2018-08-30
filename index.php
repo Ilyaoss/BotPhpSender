@@ -23,7 +23,7 @@ while (true) {
     $response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=10");
 	myLog("response: ".$response);
    
-    $ts = $response["ts'];  # обновление номера последнего обновления
+    $ts = $response["ts"];  
 }
 
 // отправление запроса на Long Poll сервер со временем ожидания 90 секунд
