@@ -85,6 +85,9 @@ function read_db($mysqli,$where=null) {
 	else 
 	{
 		$query = mysqli_query($mysqli,"SELECT * FROM user_subs WHERE $where");//"SELECT * FROM 'user_subs'");
+		if(mysqli_error($mysqli)){
+			myLog("error: ".mysqli_error($mysqli));
+		}
 		$res = mysqli_fetch_all($query);
 		myLog("res_test: ".json_encode($res,JSON_UNESCAPED_UNICODE));
 		foreach( $res as $key  ){
