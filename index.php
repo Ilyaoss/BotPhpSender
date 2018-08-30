@@ -2,7 +2,6 @@
 require_once './vendor/autoload.php';
 require_once __DIR__ . '/PHPExcel-1.8/Classes/PHPExcel/IOFactory.php';
 require_once __DIR__ .'/functions.php';
-import requests;
 use VK\Client\Enums\VKLanguage;
 use VK\Client\VKApiClient;
 
