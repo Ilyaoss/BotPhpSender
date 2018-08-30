@@ -13,13 +13,14 @@ myLog("open?");
 
 $vk = new VKApiClient('5.80', VKLanguage::RUSSIAN);
 $request = $vk->groups()->getLongPollServer(VK_TOKEN ,['group_id'=>$group_id]);
-myLog("request_default: ".$request);
-myLog("request_jsonenc: ".json_encode($request,JSON_UNESCAPED_UNICODE));
+myLog("request: ".json_encode($request,JSON_UNESCAPED_UNICODE));
+
 $server = $request["server"];
 $key = $request["key"];
 $ts = $request["ts "];
-/*$req = file_get_contents("https://{$server}?act=a_check&key={$key}&ts={$ts}&wait=25");
-myLog("req: ".$resp);*/
+
+$req = file_get_contents("https://{$server}?act=a_check&key={$key}&ts={$ts}&wait=25");
+myLog("req: ".$resp);
 
 // отправление запроса на Long Poll сервер со временем ожидания 90 секунд
 /*--Парсим xls с категориями--*/
