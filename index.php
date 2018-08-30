@@ -12,6 +12,7 @@ $group_id = 169930012;
 myLog("open?");
 
 $vk = new VKApiClient('5.80', VKLanguage::RUSSIAN);
+$link = connect_db();
 /*$request = $vk->groups()->getLongPollServer(VK_TOKEN ,['group_id'=>$group_id]);
 myLog("request: ".json_encode($request,JSON_UNESCAPED_UNICODE));
 
