@@ -20,7 +20,7 @@ $key = $request["key"];
 $ts = $request["ts "];
 
 $req = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=25");
-myLog("req: ".$resp);
+myLog("req: ".$req);
 
 // отправление запроса на Long Poll сервер со временем ожидания 90 секунд
 /*--Парсим xls с категориями--*/
