@@ -6,7 +6,7 @@ use VK\Client\Enums\VKLanguage;
 use VK\Client\VKApiClient;
 
 const MAX_LENGHT = 40;
-VK_TOKEN = '887f275780153f8d0a42339e542ecb1f1b6a47bce9385aea12ada07d3a459095800074da66b418d5911c9';
+const VK_TOKEN = '887f275780153f8d0a42339e542ecb1f1b6a47bce9385aea12ada07d3a459095800074da66b418d5911c9';
 
 $group_id = 169930012;
 myLog("open?");
