@@ -21,6 +21,7 @@ $ts = $request["ts"];
 
 while (true) {
     $response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=10");
+	$response = json_decode($response,true);
 	myLog("response: ".$response);
    
     $ts = $response["ts"];  
