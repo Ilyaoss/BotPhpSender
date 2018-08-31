@@ -70,12 +70,12 @@ function add_to_db($mysqli,$userId,$str) {
 	return $msg = "Вы успешно подписались на $str";//.$payload[$key[0]][$keys[0]];
 }
 
-function read_db($mysqli,$where=null) {
+function read_db($mysqli,$table,$where=null) {
 	$query;
 	$result = [];
 	if(is_null($where))
 	{
-		$query = mysqli_query($mysqli,"SELECT * FROM user_subs");
+		$query = mysqli_query($mysqli,"SELECT * FROM $table");
 		$res = mysqli_fetch_all($query);
 		myLog("res_test: ".json_encode($res,JSON_UNESCAPED_UNICODE));
 		foreach( $res as $key  ){
@@ -84,7 +84,7 @@ function read_db($mysqli,$where=null) {
 	}
 	else 
 	{
-		$query = mysqli_query($mysqli,"SELECT * FROM user_subs WHERE $where");//"SELECT * FROM 'user_subs'");
+		$query = mysqli_query($mysqli,"SELECT * FROM $table WHERE $where");//"SELECT * FROM 'user_subs'");
 		if(mysqli_error($mysqli)){
 			myLog("error: ".mysqli_error($mysqli));
 		}
@@ -484,7 +484,8 @@ function intersect($keys,$subs) {
 	return $array;
 }
 
-function send_subs($vk,$user,$subs,$keys,$update) {
+function send_subs($vk,$user,$subs,$update) {
+	$keys = array_keys($upd_array);
 	myLog("user: $user subs: ".json_encode($subs,JSON_UNESCAPED_UNICODE));
 	myLog("user: $user keys: ".json_encode($keys,JSON_UNESCAPED_UNICODE));
 	/*Ищу вхождение моих подписок в массиве новой информации*/

@@ -97,21 +97,26 @@ while (true) {
 	$link = connect_db();
 	$path = __DIR__ . '/test.xlsx';
 					
-	$cat_array_old = read_XLS($path);
+	/*$cat_array_old = read_XLS($path);
 	
-	/*--Создаём ассоц. массив--*/
+	#--Создаём ассоц. массив--
 	$array_old = array();
 	for($i=1;$i<count($cat_array_old);++$i) {
 		$value = $cat_array_old[$i];
 		$array_old[$value[6]][$value[0]] = $value[5]; //в категории создаём массивы асоц номер-статус
 	}
-	$keys = array_keys($array_old);
+	$keys = array_keys($array_old);*/
+	
 	$date = date("Y-m-d H:i:s");
+	$table = 'user_subs';
 	$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<31";//TO_SECONDS?
-	$db = read_db($link,$where);
+	$db = read_db($link,$table,$where);
 	foreach($db as $user=>$subs)
 	{
-		send_subs($vk,$user,$subs,$keys,$cat_array_old);							
+		$table = 'MTS_DB';
+		$where = "TIME_TO_SEC(TIMEDIFF(CLOSE_DATE,'$date'))>0";
+		$update = read_db($link,$table,$where);
+		send_subs($vk,$user,$subs,$update);							
 	}
 	$msg = null;
 	mysqli_close($link);
