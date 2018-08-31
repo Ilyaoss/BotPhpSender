@@ -109,7 +109,7 @@ while (true) {
 	$date = date("Y-m-d H:i:s");
 	$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<90";//TO_SECONDS?
 	$db = read_db($link,$where);
-	foreach($data as $user=>$subs)
+	foreach($db as $user=>$subs)
 	{
 		send_subs($vk,$user,$subs,$keys,$cat_array_old);							
 	}
