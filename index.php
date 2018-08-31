@@ -107,7 +107,7 @@ while (true) {
 	}
 	$keys = array_keys($array_old);
 	$date = date("Y-m-d H:i:s");
-	$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<90";//TO_SECONDS?
+	$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<31";//TO_SECONDS?
 	$db = read_db($link,$where);
 	foreach($db as $user=>$subs)
 	{
@@ -115,7 +115,7 @@ while (true) {
 	}
 	$msg = null;
 	mysqli_close($link);
-	sleep(60);
+	sleep(30);
 }
 // отправление запроса на Long Poll сервер со временем ожидания 90 секунд
 /*--Парсим xls с категориями--*/
