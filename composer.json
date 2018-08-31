@@ -1,7 +1,6 @@
 {
     "require": {
         "vkcom/vk-php-sdk": "^5.80",
-		"ext-mbstring": "*",
-		"ext-mysql": "*"
+		"ext-mbstring": "*"
     }
 }
