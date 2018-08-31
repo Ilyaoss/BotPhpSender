@@ -91,25 +91,25 @@ while (true) {
 	}
     $ts = $response["ts"];  # обновление номера последнего обновления
 }
-while (true) {
+/*while (true) {
 	myLog("Попал в 2");
 	$link = connect_db();
 	$path = __DIR__ . '/test.xlsx';
 					
 	
-	/*Смотрю новые подписки у пользователей за последние 30(31) секунд*/
+	#--Смотрю новые подписки у пользователей за последние 30(31) секунд--
 	$date = date("Y-m-d H:i:s");
 	$table = 'user_subs';
 	$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<31";//TO_SECONDS?
 	$db = read_db($link,$table,$where);
 	foreach($db as $user=>$subs)
 	{
-		/*$table = 'MTS_DB';
-		$where = "TIME_TO_SEC(TIMEDIFF(CLOSE_DATE,'$date'))>0";
-		$update = read_db($link,$table,$where);*/
+		//$table = 'MTS_DB';
+		//$where = "TIME_TO_SEC(TIMEDIFF(CLOSE_DATE,'$date'))>0";
+		//$update = read_db($link,$table,$where);
 		send_subs($vk,$user,$subs,$cat_array);							
 	}
 	$msg = null;
 	mysqli_close($link);
 	sleep(30);
-}
+}*/
