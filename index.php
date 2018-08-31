@@ -113,9 +113,9 @@ while (true) {
 	$db = read_db($link,$table,$where);
 	foreach($db as $user=>$subs)
 	{
-		$table = 'MTS_DB';
+		/*$table = 'MTS_DB';
 		$where = "TIME_TO_SEC(TIMEDIFF(CLOSE_DATE,'$date'))>0";
-		$update = read_db($link,$table,$where);
+		$update = read_db($link,$table,$where);*/
 		send_subs($vk,$user,$subs,$update);							
 	}
 	$msg = null;
