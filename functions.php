@@ -485,7 +485,7 @@ function intersect($keys,$subs) {
 }
 
 function send_subs($vk,$user,$subs,$update) {
-	$keys = array_keys($upd_array);
+	$keys = array_keys($update);
 	myLog("user: $user subs: ".json_encode($subs,JSON_UNESCAPED_UNICODE));
 	myLog("user: $user keys: ".json_encode($keys,JSON_UNESCAPED_UNICODE));
 	/*Ищу вхождение моих подписок в массиве новой информации*/
