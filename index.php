@@ -23,12 +23,13 @@ $ts = $request["ts"];
 $keys = [];
 $upd_array = [];
 $date_before = date("Y-m-d H:i:s");
+$link = connect_db();
 while (true) {
 	$response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=25");
 	myLog("response: ".$response);
 	$response = json_decode($response,true);
 	$updates = $response['updates'];
-	$link = connect_db();
+	//$link = connect_db();
 	if ($updates){  # проверка, были ли обновления
 		foreach( $updates as $data_){  # проход по всем обновлениям в ответе
 			$message = $data_['object'] ?? [];
@@ -105,7 +106,8 @@ while (true) {
 		//$update = read_db($link,$table,$where);
 		send_subs($vk,$user,$subs,$upd_array);							
 	}
-	mysqli_close($link);
+	//mysqli_close($link);
 	$ts = $response["ts"];  # обновление номера последнего обновления
 }
+mysqli_close($link);
 ?>
