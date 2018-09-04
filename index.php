@@ -28,8 +28,8 @@ while (true) {
 	myLog("response: ".$response);
 	$response = json_decode($response,true);
 	$updates = $response['updates'];
+	$link = connect_db();
 	if ($updates){  # проверка, были ли обновления
-		$link = connect_db();
 		foreach( $updates as $data_){  # проход по всем обновлениям в ответе
 			$message = $data_['object'] ?? [];
 			$userId = $message['from_id'] ?? 0; //user_id
@@ -85,44 +85,17 @@ while (true) {
 					}
 					$msg = null;
 				}
-				
-				break;
 			}
-			else {
-				#--Смотрю новые подписки у пользователей за последние 30(31) секунд--
-				$date_cur = date("Y-m-d H:i:s");
-				$table = 'user_subs';
-				$where = "date_start >= '$date_before' and date_start < '$date_cur'";//TO_SECONDS?
-				$date_before = $date_cur;
-				//$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<31";//TO_SECONDS?
-				$db = read_db($link,$table,$where);
-				foreach($db as $user=>$subs)
-				{
-					//$table = 'MTS_DB';
-					//$where = "TIME_TO_SEC(TIMEDIFF(CLOSE_DATE,'$date'))>0";
-					//$update = read_db($link,$table,$where);
-					send_subs($vk,$user,$subs,$upd_array);							
-				}
-				$msg = null;
-				//mysqli_close($link);
-			}
-			
 		}
-		mysqli_close($link);
 	}
-	$ts = $response["ts"];  # обновление номера последнего обновления
-}
-
-
-while (true) {
-	myLog("Попал в 2");
-	$link = connect_db();
-					
 	
 	#--Смотрю новые подписки у пользователей за последние 30(31) секунд--
-	$date = date("Y-m-d H:i:s");
+	$date_cur = date("Y-m-d H:i:s");
+	myLog("date_cur: $date_cur date_before: $date_before");
 	$table = 'user_subs';
-	$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<31";//TO_SECONDS?
+	$where = "date_start >= '$date_before' and date_start < '$date_cur'";//TO_SECONDS?
+	$date_before = $date_cur;
+	//$where = "TIME_TO_SEC(TIMEDIFF('$date',date_start))<31";//TO_SECONDS?
 	$db = read_db($link,$table,$where);
 	foreach($db as $user=>$subs)
 	{
@@ -131,9 +104,7 @@ while (true) {
 		//$update = read_db($link,$table,$where);
 		send_subs($vk,$user,$subs,$upd_array);							
 	}
-	$msg = null;
 	mysqli_close($link);
-	sleep(30);
+	$ts = $response["ts"];  # обновление номера последнего обновления
 }
-
 ?>
