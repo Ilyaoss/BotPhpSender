@@ -24,7 +24,7 @@ $keys = [];
 $upd_array = [];
 $date_before = date("Y-m-d H:i:s");
 while (true) {
-	$response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=30");
+	$response = file_get_contents("{$server}?act=a_check&key={$key}&ts={$ts}&wait=25");
 	myLog("response: ".$response);
 	$response = json_decode($response,true);
 	$updates = $response['updates'];
@@ -90,6 +90,7 @@ while (true) {
 	}
 	
 	#--Смотрю новые подписки у пользователей за последние 30(31) секунд--
+			sleep(1);
 	$date_cur = date("Y-m-d H:i:s");
 	myLog("date_cur: $date_cur date_before: $date_before");
 	$table = 'user_subs';
