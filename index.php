@@ -91,7 +91,7 @@ while (true) {
 	}
 	
 	#--Смотрю новые подписки у пользователей за последние 30(31) секунд--
-			sleep(1);
+	sleep(1);
 	$date_cur = date("Y-m-d H:i:s");
 	myLog("date_cur: $date_cur date_before: $date_before");
 	$table = 'user_subs';
